@@ -17,9 +17,9 @@ Pada checklist ini, app main dibuat dengan menjalankan perintah "python manage.p
 Di checklist ini, saya membuat berkas urls.py baru di dalam direktori main lalu di dalamnya didefinisikan fungsi show_main 
 
 - Membuat model pada aplikasi main dengan nama Item dan memiliki atribut wajib sebagai berikut.
-1. name sebagai nama item dengan tipe CharField.
-2. amount sebagai jumlah item dengan tipe IntegerField.
-3. description sebagai deskripsi item dengan tipe TextField.
+-- name sebagai nama item dengan tipe CharField.
+-- amount sebagai jumlah item dengan tipe IntegerField.
+-- description sebagai deskripsi item dengan tipe TextField.
 Pada checklist ini, di berkas models.py, membuat "from django.db import models". Lalu, membuat class Product dimana di dalamnya diletakkan atribut name dengan tipe CharField dan dibuat max length=255. Lalu dibuat juga atribut amount dengan tipe IntegerField. Selanjutnya dibuat juga atribut description dengan tipe TextField. Setelah models berhasil dibuat, saya melakukan migrasi model agar perubahan dapat dilacak oleh Django.
 
 - Membuat sebuah fungsi pada views.py untuk dikembalikan ke dalam sebuah template HTML yang menampilkan nama aplikasi serta nama dan kelas kamu.
@@ -33,7 +33,7 @@ Sesudah mengkonfigurasi django dan membuat .gitignore di awal tadi, saya sudah m
 
 
 2. Buatlah bagan yang berisi request client ke web aplikasi berbasis Django beserta responnya dan jelaskan pada bagan tersebut kaitan antara urls.py, views.py, models.py, dan berkas html.
-
+<img src="/READMEIMG/BAGAN.png" alt="Bagan">
 
 
 3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
