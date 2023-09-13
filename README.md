@@ -38,7 +38,7 @@ Sesudah mengkonfigurasi django dan membuat .gitignore di awal tadi, saya sudah m
 
 
 3. Jelaskan mengapa kita menggunakan virtual environment? Apakah kita tetap dapat membuat aplikasi web berbasis Django tanpa menggunakan virtual environment?
-
+Virtual environment (venv) digunakan untuk mengisolasi dependensi proyek Python, termasuk aplikasi web berbasis Django, dengan alasan Venv memungkinkan kita untuk mengisolasi dependensi setiap proyek, menghindari konflik paket dan memastikan konsistensi. Lalu, venv juga membuat pengelolaan dependensi lebih mudah proyek seperti instalasi, pembaruan, dan penghapusan paket. Selain itu, venv memungkinkan pencatatan dependensi proyek dalam file requirements.txt untuk replikasi yang konsisten. Jadi, sebenarnya kita bisa saja membuat aplikasi web Django tanpa venv, tetapi penggunaan venv lebih disarankan untuk pengelolaan yang lebih baik dan menghindari potensi masalah dengan dependensi.
 
 4. Jelaskan apakah itu MVC, MVT, MVVM dan perbedaan dari ketiganya.
 - MVC (Model-View-Controller)
