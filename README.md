@@ -2,6 +2,10 @@ Nama    : Serafino Theodore Axel Rori
 NPM     : 2206082644
 Kelas   : PBP F
 
+==========================================================================================================================================
+==========================================================================================================================================
+TUGAS 2 PBP
+
 Link aplikasi Adaptable:
 https://axelshopzz.adaptable.app/main/
 
@@ -51,3 +55,9 @@ MVT adalah konsep yang digunakan khusus dalam Django, kerangka kerja web Python.
 MVVM adalah arsitektur yang sering digunakan dalam pengembangan aplikasi berbasis perangkat lunak bergerak (mobile) dan aplikasi satu halaman (single-page applications) di web. ViewModel memainkan peran penting dalam mengelola tampilan dan interaksi pengguna.
 
 Perbedaan utama antara ketiganya adalah bagaimana mereka memisahkan tugas-tugas dalam pengembangan perangkat lunak dan bagaimana mereka mengelola aliran data dan interaksi antara Model dan View. Pemilihan arsitektur tergantung pada jenis aplikasi yang sedang dikembangkan dan juga preferensi dari pengembang itu sendiri.
+
+
+
+==========================================================================================================================================
+==========================================================================================================================================
+TUGAS 3 PBP
