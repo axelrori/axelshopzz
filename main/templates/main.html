@@ -3,11 +3,14 @@
 {% block content %}
     <h1>{{appname}}</h1>
 
-    <h5>Name:</h5>
+    <h3>Name:</h3>
     <p>{{name}}</p>
 
-    <h5>Class:</h5>
+    <h3>Class:</h3>
     <p>{{class}}</p>
+
+    <h4>Product: {{ products|length }} item yang dipesan.</h4>
+
 <table>
     <tr>
         <th>Name</th>
