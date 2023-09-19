@@ -1,9 +1,8 @@
-### H3 Nama    : Serafino Theodore Axel Rori
-### H3 NPM     : 2206082644
-### H3 Kelas   : PBP F
+### Nama    : Serafino Theodore Axel Rori
+### NPM     : 2206082644
+### Kelas   : PBP F
 
-==========================================================================================================================================
-# H1 **TUGAS 2**
+# **TUGAS 2**
 
 Link aplikasi Adaptable:
 https://axelshopzz.adaptable.app/main/
@@ -56,5 +55,4 @@ MVVM adalah arsitektur yang sering digunakan dalam pengembangan aplikasi berbasi
 Perbedaan utama antara ketiganya adalah bagaimana mereka memisahkan tugas-tugas dalam pengembangan perangkat lunak dan bagaimana mereka mengelola aliran data dan interaksi antara Model dan View. Pemilihan arsitektur tergantung pada jenis aplikasi yang sedang dikembangkan dan juga preferensi dari pengembang itu sendiri.
 
 
-==========================================================================================================================================
-# H1 **TUGAS 3**
+# **TUGAS 3**
