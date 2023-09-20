@@ -64,8 +64,21 @@ GET:
 Metode GET mengirim data dari formulir dengan melampirkannya ke URL sebagai parameter query string. Data ini dapat terlihat di URL dan dapat di-bookmark atau dibagikan dengan mudah. Metode ini lebih cocok digunakan untuk permintaan yang tidak mengubah keadaan dari server.
 
 **2. Apa perbedaan utama antara XML, JSON, dan HTML dalam konteks pengiriman data?**
+XML: Bahasa markup yang dirancang untuk mendefinisikan, menyimpan, dan mentransfer data terstruktur antara sistem yang berbeda. Ini digunakan terutama untuk pertukaran data antara aplikasi. XML memiliki struktur hierarkis dengan elemen, atribut, dan teks yang diapit oleh tag. Ini membuat xml sangat fleksibel dalam merepresentasikan berbagai jenis data yang terstruktur.
+
+JSON: JSON adalah format pertukaran data ringan yang digunakan terutama untuk pertukaran data antara aplikasi, terutama di lingkungan web. Ini digunakan untuk mengirim data antara server dan browser, serta antara server dan server. JSON menggunakan struktur objek yang lebih mudah dibaca dan juga ditulis oleh manusia.
+
+HTML: HTML adalah bahasa markup yang digunakan untuk membuat struktur dan tampilan halaman web. Ini digunakan terutama untuk menggambarkan struktur dan tampilan konten web yang ditampilkan di browser.
+
+Seperti yang telah dijabarkan di atas, penggunaan ketiganya tergantung pada kebutuhan aplikasi kita masing-masing dan juga tergantung pada konteks penggunaannya.
 
 **3. Mengapa JSON sering digunakan dalam pertukaran data antara aplikasi web modern?**
+- Ringan dan Mudah Dibaca
+JSON memiliki format yang ringan dan mudah dibaca oleh manusia. Hal ini membuat kita lebih mudah untuk membuat, membaca, dan memahami data dalam format JSON.
+- Dukungan Browser Bawaan
+Banyak bahasa pemrograman yang memiliki dukungan bawaan untuk mengurai JSON. Ini membuat pengolahan data JSON di browser menjadi lebih mudah dan juga efisien. Sebagai hasilnya, JSON sering digunakan dalam pengiriman data dari server ke browser dan sebaliknya dalam pengembangan aplikasi web.
+- Crossplatform
+JSON adalah format independen platform, sehingga data yang dibentuk dalam format JSON dapat lebih mudah untuk dipahami dan digunakan oleh berbagai bahasa pemrograman dan juga sistem operasi. Ini membuat json lebih ideal untuk pertukaran data antara aplikasi yang berjalan di platform yang berbeda.
 
 **4. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
 - Membuat input form untuk menambahkan objek model pada app sebelumnya
