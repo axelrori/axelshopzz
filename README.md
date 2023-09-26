@@ -105,3 +105,46 @@ Postman XML by ID:
 <img src="/READMEIMG/Postman_xmlid.png" alt="Postman XML BY ID">
 Postman JSON by ID:
 <img src="/READMEIMG/Postman_jsonid.png" alt="Postman JSON BY ID">
+
+
+
+# **TUGAS 4**
+**1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?**
+Django UserCreationForm adalah salah satu form bawaan yang disediakan oleh Django, yang dirancang khusus untuk membantu dalam proses pembuatan user baru dalam aplikasi web yang dibangun dengan Django. Form ini digunakan untuk mengumpulkan informasi yang diperlukan untuk membuat akun seperti username, password, dan konfirmasi password.
+### Kelebihan UserCreationForm: ###
+- Mudah digunakan
+Dapat langsung diintegrasikan dengan mudah ke dalam aplikasi Django Anda tanpa harus menulis kode form secara manual.
+- Validasi otomatis
+Memiliki validasi otomatis yang memastikan bahwa pengguna mengisi data dengan benar dan mematuhi aturan keamanan yang umum, seperti contohnya memeriksa kekuatan password dan memeriksa apakah username sudah ada.
+- Kompatibilitas dengan Django Authentication
+Form ini secara langsung terkait dengan sistem otentikasi yang disediakan oleh Django.
+### Kekurangan UserCreationForm: ###
+- Tidak dapat disesuaikan sepenuhnya
+UserCreationForm adalah form bawaan yang sederhana, sehingga jika ingin menambah fitur custom dalam proses pendaftaran mungkin memerlukan lebih banyak kode.
+- Tidak termasuk fitur keamanan tingkat lanjut
+Meskipun UserCreationForm menyediakan beberapa tingkat validasi dan keamanan dasar, kita mungkin perlu menambahkan lapisan keamanan tambahan seperti CAPTCHA atau verifikasi email untuk mengatasi risiko keamanan yang lebih tinggi.
+
+**2. Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?**
+Autentikasi adalah proses verifikasi identitas pengguna, sementara otorisasi adalah proses mengatur hak akses atau izin pengguna dalam aplikasi. Autentikasi memastikan identitas, sedangkan otorisasi mengontrol apa yang dapat dilakukan oleh pengguna yang telah terautentikasi. Keduanya sangatlah penting untuk menjaga keamanan dan kontrol akses dalam aplikasi web.
+
+**3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk mengelola data sesi pengguna?**
+Cookies adalah potongan data kecil yang disimpan pada perangkat pengguna saat mereka mengunjungi situs web. Cookies digunakan dalam konteks aplikasi web untuk menyimpan informasi pada sisi klien (browser pengguna) yang dapat diakses dan dikirimkan kembali ke server web ketika pengguna mengunjungi situs tersebut lagi. Hal ini memungkinkan aplikasi web untuk mengenali pengguna, menyimpan preferensi, dan melacak sesi pengguna.
+Django menggunakan cookies untuk mengelola data sesi pengguna dengan cara berikut:
+1. Session Cookies
+Ketika seorang pengguna mengakses situs web yang menggunakan Django, server akan membuat sebuah sesi unik untuk pengguna tersebut. Informasi sesi ini kemudian disimpan dalam session cookies di browser pengguna.
+2. Session Framework
+Django memiliki sistem sesi bawaan yang memungkinkan kita untuk menyimpan dan mengelola data sesi pengguna dengan mudah. Data sesi ini dapat diakses di berbagai bagian aplikasi, seperti views dan juga templates. Django secara otomatis mengelola siklus hidup dari sebuah sesi, termasuk pembuatan dan penghapusan sesi, serta menyimpan data sesi ke dalam cookies.
+3. Konfigurasi
+Kita dapat mengonfigurasi pengaturan sesi di dalam berkas settings.py Django. Kita dapat menentukan bagaimana sesi harus disimpan misalnya dalam database, dalam cookies, atau di server, berapa lama sesi harus bertahan, dan lain-lain.
+
+**4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?**
+Penggunaan cookies dalam pengembangan web bisa menjadi aman jika dikelola dengan benar. Namun, terdapat beberapa risiko potensial yang harus diwaspadai. Risiko tersebut diantaranya terdapat pencurian data, session hijacking, serangan XSS, pelacakan yang invasif, dan komplikasi hukum. Sehingga untuk mengamankan cookies, hal yang dapat kita lakukan adalah menggunakan HTTPS, menyesuaikan pengaturan keamanan, enkripsi data sensitif, validasi data, berikan privasi dan juga opsi penggunaan cookies. Hal ini disebabkan karena keamanan adalah prioritas utama dalam pengembangan web.
+
+**5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).**
+- Mengimplementasikan fungsi registrasi, login, dan logout untuk memungkinkan pengguna untuk mengakses aplikasi sebelumnya dengan lancar.
+
+- Membuat dua akun pengguna dengan masing-masing tiga dummy data menggunakan model yang telah dibuat pada aplikasi sebelumnya untuk setiap akun di lokal.
+
+- Menghubungkan model Item dengan User.
+
+- Menampilkan detail informasi pengguna yang sedang logged in seperti username dan menerapkan cookies seperti last login pada halaman utama aplikasi.
