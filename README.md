@@ -335,3 +335,52 @@ def create_product(request):
     product.save()
     return HttpResponseRedirect(reverse('main:show_main'))
 ~~~
+
+### Menambahkan Kode Bonus
+Pertama-tama saya menambahkan 3 fungsi baru yaitu plus_product_amount, minus_product_amount, dan juga remove_product pada views.py seperti berikut:
+~~~
+def plus_product_amount(request, id):
+    product = Product.objects.get(id=id)
+    product.amount += 1
+    product.save()
+    response = HttpResponseRedirect(reverse("main:show_main"))
+    return response
+
+def minus_product_amount(request, id):
+    product = Product.objects.get(id=id)
+    if (product.amount > 0):
+        product.amount -= 1
+        product.save()
+    response = HttpResponseRedirect(reverse("main:show_main"))
+    return response
+
+def remove_product(request, id):
+    Product.objects.filter(pk=id).delete()
+    response = HttpResponseRedirect(reverse("main:show_main"))
+    return response
+~~~
+Kemudian saya mengimport fungsi di atas menuju urls.py dan menambahkan path ke dalam urls patterns seperti berikut:
+~~~
+...
+path('plus_product_amount/<int:id>', plus_product_amount, name='plus_product_amount'),
+path('minus_product_amount/<int:id>', minus_product_amount, name='minus_product_amount'),
+path('remove_product/<int:id>', remove_product, name='remove_product'),
+~~~
+
+Setelah itu, saya menambahkan kode di main.html agar dapat terdisplay pada website seperti berikut:
+~~~
+<td class="d-flex align-items-center">
+    <form method="post" action="{% url 'main:plus_product_amount' product.id %}">
+        {% csrf_token %}
+        <button class="btn btn-primary mx-1">+</button>
+    </form>
+    <form method="post" action="{% url 'main:minus_product_amount' product.id %}">
+        {% csrf_token %}
+        <button class="btn btn-primary mx-1">-</button>
+    </form>
+    <form method="post" action="{% url 'main:remove_product' product.id %}">
+        {% csrf_token %}
+        <button class="btn btn-primary mx-1">Delete</button>
+    </form>
+</td>
+~~~
