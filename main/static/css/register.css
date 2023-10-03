@@ -74,6 +74,7 @@ section {
     cursor: pointer;
     border-radius: 40px;
     width: 250px;
+    font-weight: 700;
 }
 
 .login form input[type="submit"]:hover {

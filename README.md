@@ -430,9 +430,15 @@ Perbedaan utama antara margin dan padding adalah margin mengatur jarak di sekita
 
 ## 4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
 Berikut merupakan perbedaan antara Tailwind dan Bootstrap:
-| Deisgn | Customization | Ukuran |
-|--------|:-------------:|--------|
+| Tailwind | Bootstrap |
+|----------|-----------|
+| Tailwind menggunakan utility yang telah didefinisikan sebelumnya untuk membentuk tampilan | Bootstrap menggunakan kompoen yang telah didefinisikan dan dapat langsung digunakan |
+| File CSS yang menggunakan Tailwind akan berukuran lebih kecil karena hanya berisi utility class yang ada | File CSS yang menggunakan Bootstrap akan lebih besar karena komponennya telah didefinisikan |
+| Tailwind lebih fleksibel jika kita ingin mengkustomisasi | Bootstrap tidak fleksibel karena telah didefinisikan sebelumnya sehingga terkadang ada beberapa bagian yang tidak dapat dikustomisasi |
 
+Tailwind akan menjadi opsi yang tepat jika kita ingin membuat desain yang sangat customized dan menghasilkan kode yang lebih efisien.
+
+Bootstrap akan menjadi opsi yang tepat jika kita ingin mengerjakan suatu proyek dengan time range yang cepat tanpa perlu banyak kustomisasi.
 
 ## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 Untuk mengkustomisasi, saya menggunakan file external css dengan cara mambuat folder baru static di dalam direktori aplikasi main, lalu membuat folder css di dalamnya yang berisi file-file css dari file html yang telah dibuat sebelumnya.
