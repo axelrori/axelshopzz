@@ -7,4 +7,5 @@ class Product(models.Model):
     amount = models.IntegerField()
     description = models.TextField()
     price = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    image_url = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
