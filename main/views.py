@@ -94,16 +94,14 @@ def plus_product_amount(request, id):
     product = Product.objects.get(id=id)
     product.amount += 1
     product.save()
-    response = HttpResponseRedirect(reverse("main:show_main"))
-    return response
+    return redirect('main:show_main')
 
 def minus_product_amount(request, id):
     product = Product.objects.get(id=id)
     if (product.amount > 0):
         product.amount -= 1
         product.save()
-    response = HttpResponseRedirect(reverse("main:show_main"))
-    return response
+    return redirect('main:show_main')
 
 def remove_product(request, id):
     Product.objects.filter(pk=id).delete()
@@ -156,11 +154,8 @@ def add_product_ajax(request):
 
 @csrf_exempt
 def delete_product_ajax(request, id):
-    if request.method == 'POST':
-        try:
-            product = Product.objects.get(id=id)
-            product.delete()
-            return HttpResponse(b"OK", status=200)
-        except Product.DoesNotExist:
-            return HttpResponseNotFound("Product not found")
-    return HttpResponseNotFound("Invalid request")
+    if request.method == 'DELETE':
+        product = get_object_or_404(Product, pk=id)
+        product.delete()
+        return HttpResponse(b"DELETED", status=200)
+    return HttpResponseNotFound()

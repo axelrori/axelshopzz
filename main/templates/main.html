@@ -142,10 +142,10 @@
             <td>${item.fields.description}</td>
             <td>${item.fields.date_added}</td>
             <td class="d-flex align-items-center">
-              <button onclick="increaseAmount(${item.pk})" class="tablebutton">+</button>
-              <button onclick="decreaseAmount(${item.pk})" class="tablebutton">-</button>
+              <a href="plus_product_amount/${item.pk}" class="tablebutton" style="text-decoration: none;">+</a>
+              <a href="minus_product_amount/${item.pk}" class="tablebutton" style="text-decoration: none;">-</a>
               <a href="/edit-product/${item.pk}" class="tablebutton" style="text-decoration: none;">Edit</a>
-              <a href="/remove_product/${item.pk}" class="tablebutton" style="text-decoration: none;">Delete</a>
+              <button class="tablebutton" data-url="{% url 'main:delete_product_ajax' 123 %}" onclick="deleteProduct(this, ${item.pk})">Delete</button>
             </td>
           </tr>`;
       });
@@ -190,28 +190,13 @@
     }
     
     document.getElementById("button_add").onclick = addProduct
-    
-    function increaseAmount(productId) {
-      fetch(`/increase_amount/${productId}`, {
-        method: "POST",
-        headers: {
-            "X-CSRFToken": getCookie("csrftoken"),
-        },
-      })
-        .then(() => refreshProducts())
-        .catch((error) => console.error("Error:", error));
-    }
 
-    function decreaseAmount(productId) {
-      fetch(`/decrease_amount/${productId}`, {
-        method: "POST",
-        headers: {
-            "X-CSRFToken": getCookie("csrftoken"),
-        },
-      })
-        .then(() => refreshProducts())
-        .catch((error) => console.error("Error:", error));
-    }
+    function deleteProduct(button, id) {
+            let url = button.getAttribute('data-url').replace('123', id);
+            fetch(url, {
+                method: "DELETE",
+            }).then(refreshProducts).then(refreshCard)
+        }
 
     function getCookie(name) {
       var cookieValue = null;
