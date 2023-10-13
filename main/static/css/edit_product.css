@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-custom {
+    background-color: #0b0c50;
+  }
+
+  section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180vh;
+    width: 100%;
+    background-image: url("https://cdn.discordapp.com/attachments/1026138328858378300/1158410250932719676/image.png?ex=651c251e&is=651ad39e&hm=896bb43766ade2b1af756b712e266c1a35d97411e3eba8922599fc4e5914e93f&");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+  }
+  
+  .title {
+    text-align: center;
+    margin: 20px 0;
+    color: #fff;
+  }
+  
+  .form-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 20px;
+    box-shadow: 2px 3px 8px 10px #a5a5a5;
+    padding: 30px;
+    text-align: center;
+    width: 700px;
+    max-width: 90%;
+    height: fit-content;
+    margin-bottom: 20px;
+  }
+
+  .form-container h1 {
+    color: #0b0c50;
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  table tr td {
+    padding: 10px;
+  }
+  
+  input[type="submit"] {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #0b0c50;
+    border: 1px solid #0b0c50;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #080833;
+    color: #fff;
+  }

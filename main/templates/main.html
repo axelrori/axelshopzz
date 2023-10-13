@@ -1,62 +1,129 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block meta %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <title>Home</title>
+{% endblock meta %}
+
 {% block content %}
-    <h1>{{appname}}</h1>
+<section>
+  <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
+        <div class="container-fluid">
+          <img src="https://cdn.discordapp.com/attachments/1026138328858378300/1158452747247562834/da.png?ex=651c4cb1&is=651afb31&hm=c66ff099f5ab7827dd663ae036a21c81833e4cfa6a843d821022fb2ef37e6d44&" style="max-height: 24px; padding-right: 12px;">
+          <a class="navbar-brand" href="#" style="color: #fff;">AxelShopZz</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#" style="color: #fff;">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" style="color: #fff;">Products</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff;">
+                  Account
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#" style="color: #0b0c50;">Settings</a></li>
+                  <li><a class="dropdown-item" href="#" style="color: #0b0c50;">Preferences</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="{% url 'main:logout' %} " style="color: #0b0c50 ; font-weight: 700;">Logout</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" aria-disabled="true" style="color: #818181;">AxelShopZzPoints</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
 
-    <h3>Name:</h3>
-    <p>{{name}}</p>
+      <h1 style="color: #fff;">{{appname}} Main Page</h1>
+  <div class="box">
+      <div class="profile">
+        <p>Welcome, {{name}} from {{class}}!</p>
+      </div>
+      <div class="card-container">
+        {% for product in products %}
+        <div class="card" style="width: 18rem; border-radius: 20px; padding-left: 10px; padding-right: 10px; align-items: center;">
+          <img src={{product.image_url}} class="card-img" alt="productimage">
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="total">
+        <h4>Product: {{ products|length }} item yang dipesan</h4>
+      </div>
+      <div class="table-container">
+        <table>
+          <tr>
+              <th class="top-left-th">Name</th>
+              <th>Amount</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Date Added</th>
+              <th class="top-right-th">Options</th>
+          </tr>
 
-    <h3>Class:</h3>
-    <p>{{class}}</p>
+          {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
 
-    <h4>Product: {{ products|length }} item yang dipesan.</h4>
+          {% for product in products %}
+              <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.amount}}</td>
+                <td>Rp.{{product.price}}</td>
+                <td>{{product.description}}</td>
+                <td>{{product.date_added}}</td>
+                <td class="d-flex align-items-center">
+                  <form method="post" action="{% url 'main:plus_product_amount' product.id %}">
+                      {% csrf_token %}
+                      <button class="tablebutton">+</button>
+                  </form>
+                  <form method="post" action="{% url 'main:minus_product_amount' product.id %}">
+                      {% csrf_token %}
+                      <button class="tablebutton">-</button>
+                  </form>
+                  <a href="{% url 'main:edit_product' product.pk %}">
+                    <button class="tablebutton">
+                        Edit
+                    </button>
+                  </a>
+                  <a href="{% url 'main:delete_product' product.pk %}">
+                    <button class="tablebutton">
+                        Delete
+                    </button>
+                  </a>
+                </td>
+              </tr>
+          {% endfor %}
+      </table>
+    </div>
 
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Amount</th>
-        <th>Description</th>
-        <th>Date Added</th>
-    </tr>
+    <br />
 
-    {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+    <a href="{% url 'main:create_product' %}">
+        <button class="add-product-button">
+            Add New Product
+        </button>
+    </a>
+  </div>
+  <div class="login_session">
+    <p>Last login session: {{ last_login }}</p>
+  </div>
+</section>
 
-    {% for product in products %}
-        <tr>
-            <td>{{product.name}}</td>
-            <td>{{product.price}}</td>
-            <td>{{product.amount}}</td>
-            <td>{{product.description}}</td>
-            <td>{{product.date_added}}</td>
-            <td class="d-flex align-items-center">
-                <form method="post" action="{% url 'main:plus_product_amount' product.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-primary mx-1">+</button>
-                </form>
-                <form method="post" action="{% url 'main:minus_product_amount' product.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-primary mx-1">-</button>
-                </form>
-                <form method="post" action="{% url 'main:remove_product' product.id %}">
-                    {% csrf_token %}
-                    <button class="btn btn-primary mx-1">Delete</button>
-                </form>
-            </td>
-        </tr>
-    {% endfor %}
-</table>
-<h5>Sesi terakhir login: {{ last_login }}</h5>
-<br />
-
-<a href="{% url 'main:create_product' %}">
-    <button>
-        Add New Product
-    </button>
-</a>
-<a href="{% url 'main:logout' %}">
-    <button>
-        Logout
-    </button>
-</a>
 {% endblock content %}

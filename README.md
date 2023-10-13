@@ -384,3 +384,124 @@ Setelah itu, saya menambahkan kode di main.html agar dapat terdisplay pada websi
     </form>
 </td>
 ~~~
+
+
+
+# **TUGAS 5**
+## 1. Jelaskan manfaat dari setiap element selector dan kapan waktu yang tepat untuk menggunakannya.
+Element selector berguna untuk mengkustomisasi semua elemen yang sama pada suatu file html. contoh penggunaannya adalah seperti berikut:
+~~~
+h2 {
+    font-weight: 600;
+    color: #fff;
+}
+~~~
+Dalam potongan kode di atas, semua elemen di file html yang terbuat dari h2 akan mengikuti sifat yang telah ditentukan oleh element selector pada file css.
+
+Waktu yang tepat untuk menggunakan element selector adalah jika ingin mengubah suatu style awal yang default yang kita diinginkan pada suatu halaman karena element selector akan mengubah semua elemen yang terlibat pada seluruh page HTML.
+
+## 2. Jelaskan HTML5 Tag yang kamu ketahui.
+HTML5 adalah versi terbaru dari bahasa HTML. Dalam versi ini ada beberapa fitur tag yang sering saya gunakan, diantaranya terdapat:
+<header>: Tag ini digunakan untuk mendefinisikan bagian atas dari suatu halaman HTML.
+<nav>: Tag ini biasanya digunakan untuk membuat navbar dan umumnya tag nav dimasukkan ke dalam tag header karena navbar berada di bagian teratas pada suatu halaman HTML.
+<section>: Tag ini biasanya digunakan untuk mengelompokkan suatu konten yang terkait, contohnya di tugas ini pada halaman login, section memuat semua fitur mulai dari label, input box, dan juga login button.
+<div>: Tag ini sering digunakan untuk mengelompokkan suatu fitur konten agar mudah untuk dikustomisasi sendiri.
+
+## 3. Jelaskan perbedaan antara margin dan padding.
+Margin adalah ruang di sekitar suatu elemen pada HTML. Margin dapat digunakan untuk mengontrol jarak antara suatu elemen dengan elemen-elemen lainnya di dalam suatu page HTML. Margin dapat diatur dari segala sisi seperti margin-top, margin-left, margin-right, dan juga margin-bottom. Contoh penggunaan margin dalam css:
+~~~
+section {
+  margin-top: 5px;
+  margin-right: 20px;
+  margin-bottom: 5px;
+  margin-left: 20px;
+}
+~~~
+Padding adalah ruang di dalam elemen HTML antara kontennya dan batas elemen itu sendiri. Padding dapat digunakan untuk mengontrol jarak antara konten elemen dan batas elemen tersebut. Padding juga dapat diatur dari segala sisi seperti padding-top, padding-left, padding-right, dan juga padding-bottom. Contoh penggunaan padding dalam css:
+~~~
+section {
+  padding-top: 15px;
+  padding-right: 30px;
+  padding-bottom: 15px;
+  padding-left: 30px;
+}
+~~~
+Perbedaan utama antara margin dan padding adalah margin mengatur jarak di sekitar elemen, sedangkan padding mengatur ruang di dalam elemen antara kontennya dan batas elemen itu sendiri.
+
+## 4. Jelaskan perbedaan antara framework CSS Tailwind dan Bootstrap. Kapan sebaiknya kita menggunakan Bootstrap daripada Tailwind, dan sebaliknya?
+Berikut merupakan perbedaan antara Tailwind dan Bootstrap:
+| Tailwind | Bootstrap |
+|----------|-----------|
+| Tailwind menggunakan utility yang telah didefinisikan sebelumnya untuk membentuk tampilan | Bootstrap menggunakan kompoen yang telah didefinisikan dan dapat langsung digunakan |
+| File CSS yang menggunakan Tailwind akan berukuran lebih kecil karena hanya berisi utility class yang ada | File CSS yang menggunakan Bootstrap akan lebih besar karena komponennya telah didefinisikan |
+| Tailwind lebih fleksibel jika kita ingin mengkustomisasi | Bootstrap tidak fleksibel karena telah didefinisikan sebelumnya sehingga terkadang ada beberapa bagian yang tidak dapat dikustomisasi |
+
+Tailwind akan menjadi opsi yang tepat jika kita ingin membuat desain yang sangat customized dan menghasilkan kode yang lebih efisien.
+
+Bootstrap akan menjadi opsi yang tepat jika kita ingin mengerjakan suatu proyek dengan time range yang cepat tanpa perlu banyak kustomisasi.
+
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+Untuk mengkustomisasi, saya menggunakan file external css dengan cara mambuat folder baru static di dalam direktori aplikasi main, lalu membuat folder css di dalamnya yang berisi file-file css dari file html yang telah dibuat sebelumnya.
+Untuk membuat file html terhubung dengan file css, saya menambahkan potongan kode berikut di bagian atas setiap file html:
+~~~
+{% load static %}
+
+{% block meta %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/filename.css' %}">
+  <title>Title</title>
+{% endblock meta %}
+~~~
+Selanjutnya, saya mengkustomisasi page login, register, main, edit_product, dan juga create_product. Dalam mengubah desain dari page, perlu dilakukan pembagian setiap bagian dari html ke dalam class yang berbeda agar dapat dikustomisasi masing-masing. Beberapa command yang sering digunakan adalah padding, margin, width, height, dan lain-lain. Saya juga mengganti background dari html menggunakan image dengan memasukkan imageurl ke dalam file css.
+
+Lalu, saya menambahkan fitur card ke dalam halaman main. Untuk menambahkan fitur card, saya menambahkan lalu sedikit memodifikasi potongan kode dari website bootstrap seperti berikut:
+~~~
+<div class="card-container">
+        {% for product in products %}
+        <div class="card" style="width: 18rem; border-radius: 20px; padding-left: 10px; padding-right: 10px; align-items: center;">
+          <img src={{product.image_url}} class="card-img" alt="productimage">
+          <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.description}}</p>
+          </div>
+        </div>
+    {% endfor %}
+</div>
+~~~
+Dalam potongan kode bootstrap di atas, agar card dapat terhubung dengan product, elemen dari card dihubungkan dengan objek products, contohnya pada bagian card-title elemennya adalah {{product.name}} dan pada bagian card-text elemennya adalah {{product.description}}.
+Setelah menambahkan potongan kode untuk card, selanjutnya saya mengkustomisasi card di file main.css dengan potongan kode sebagai berikut:
+~~~
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 20px;
+  margin: 40px;
+  justify-content: center;
+  justify-items: center;
+  padding-bottom: 20px;
+}
+
+.card-container .card {
+  max-width: 100%;
+}
+
+.card-container .card-title {
+  font-weight: bold;
+  color: #333;
+}
+
+.card-container .card-text {
+  color: #555;
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 24px;
+  height: 200px;
+  object-fit: cover;
+  margin: 10px;
+}
+~~~
+
+
