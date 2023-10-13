@@ -505,3 +505,29 @@ Setelah menambahkan potongan kode untuk card, selanjutnya saya mengkustomisasi c
 ~~~
 
 
+
+# **TUGAS 6**
+## 1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
+Dalam synchronus programming, tindakan dilaksanakan secara berurutan, satu per satu, dan jika tindakan sebelumnya belum selesai, maka tindakan berikutnya ditunda. Ini menyederhanakan proses penulisan dan pemahaman program, tetapi terkadang dapat terasa lambat jika tindakan memerlukan waktu lama atau jika terjadi kesalahan. Sedangkan dalam asynchronus programming, tindakan dapat berjalan secara bersamaan tanpa penundaan, yang membuat program menjadi lebih cepat dan responsif. Namun, hal ini juga menjadikan penulisan dan pemahaman program lebih rumit karena alur eksekusinya tidak mengikuti urutan kode.
+
+## 2. Dalam penerapan JavaScript dan AJAX, terdapat penerapan paradigma event-driven programming. Jelaskan maksud dari paradigma tersebut dan sebutkan salah satu contoh penerapannya pada tugas ini.
+Event-driven programming mengendalikan urutan eksekusi program berdasarkan event seperti interaksi pengguna, sensor, atau pesan dari program lain. Hal ini meningkatkan responsivitas program. Sebagai ilustrasi, dalam pendekatan ini, sebuah formulir web mampu mengirimkan data ke server tanpa memerlukan penyegaran halaman menggunakan XMLHttpRequest, dan dapat merespons peristiwa seperti klik, penekanan tombol, atau perubahan dengan menampilkan hasil di elemen HTML tanpa perlu menjalankan kode secara berkelanjutan.
+
+## 3. Jelaskan penerapan asynchronous programming pada AJAX.
+Dalam konteks AJAX, asynchronous programming adalah teknik yang memungkinkan aplikasi web berinteraksi dengan server tanpa harus menunggu respons. Pendekatan ini meningkatkan efisiensi dan responsivitas aplikasi web karena tidak memerlukan pembaruan halaman web saat melakukan permintaan data. Dalam asynchronous programming dengan AJAX, JavaScript berperan sebagai bahasa pemrograman utama untuk mengirim dan menerima data dari server secara asinkron. Selain itu, JavaScript juga dapat mengubah antarmuka pengguna sesuai dengan data yang diterima atau dikirim, menciptakan pengalaman pengguna yang lebih dinamis dan interaktif.
+
+## 4. Pada PBP kali ini, penerapan AJAX dilakukan dengan menggunakan Fetch API daripada library jQuery. Bandingkanlah kedua teknologi tersebut dan tuliskan pendapat kamu teknologi manakah yang lebih baik untuk digunakan.
+Fetch API adalah lebih ringan dan kompatibel dengan browser modern, sementara jQuery lebih cocok untuk browser lama.
+
+Dalam penggunaannya, Fetch API menggunakan Promise untuk mengatur respons asinkron, yang membantu menghindari "callback hell," sedangkan jQuery lebih mengandalkan callback yang lebih bersifat fleksibel.
+
+jQuery menyediakan metode yang lebih mudah untuk tugas-tugas seperti pengiriman data JSON, sementara Fetch API memberikan tingkat kontrol yang lebih tinggi dalam mengelola permintaan dan respons Ajax.
+
+Selain itu, Fetch API memiliki metode bawaan untuk mengubah respons menjadi berbagai jenis data yang berbeda, sementara jQuery memerlukan penentuan jenis data di awal melalui opsi dataType.
+
+## 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+Proses dimulai dengan pembuatan cards dalam seluruh dokumen HTML. Kemudian, langkah selanjutnya adalah menciptakan sebuah fungsi baru di dalam tampilan (views) untuk mengambil produk dalam format JSON. Setelah itu, saya membuat fungsi "getProduct" dalam bahasa JavaScript pada halaman "main.html" untuk mengambil produk dalam format JSON.
+
+Selanjutnya, tahapan berikutnya adalah menciptakan fungsi untuk menampilkan seluruh produk pada kartu-kartu. Kemudian, saya membuat fungsi untuk mengubah tabel agar sesuai dengan AJAX. Selanjutnya, saya membuat modal sebagai tempat untuk menambahkan produk baru beserta tombolnya. Setelah itu, tahap berikutnya adalah menciptakan fungsi untuk menambahkan produk saat tombol ditekan dan mengatur "event listener" agar bisa mendeteksi tindakan tersebut.
+
+Terakhir, saya menciptakan serangkaian fungsi untuk menyesuaikan tombol dan fitur yang telah dibuat pada tugas-tugas sebelumnya.

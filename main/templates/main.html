@@ -24,7 +24,7 @@
                 <a class="nav-link active" aria-current="page" href="#" style="color: #fff;">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#" style="color: #fff;">Products</a>
+                <a class="nav-link" href="{% url 'main:create_product' %}" style="color: #fff;">Add Product</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #fff;">
@@ -54,76 +54,180 @@
       <div class="profile">
         <p>Welcome, {{name}} from {{class}}!</p>
       </div>
-      <div class="card-container">
-        {% for product in products %}
-        <div class="card" style="width: 18rem; border-radius: 20px; padding-left: 10px; padding-right: 10px; align-items: center;">
-          <img src={{product.image_url}} class="card-img" alt="productimage">
-          <div class="card-body">
-            <h5 class="card-title">{{product.name}}</h5>
-            <p class="card-text">{{product.description}}</p>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
+      <div id="product_card" class="card-container"></div>
       <div class="total">
         <h4>Product: {{ products|length }} item yang dipesan</h4>
       </div>
+
+
       <div class="table-container">
-        <table>
-          <tr>
-              <th class="top-left-th">Name</th>
-              <th>Amount</th>
-              <th>Price</th>
-              <th>Description</th>
-              <th>Date Added</th>
-              <th class="top-right-th">Options</th>
-          </tr>
-
-          {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-          {% for product in products %}
-              <tr>
-                <td>{{product.name}}</td>
-                <td>{{product.amount}}</td>
-                <td>Rp.{{product.price}}</td>
-                <td>{{product.description}}</td>
-                <td>{{product.date_added}}</td>
-                <td class="d-flex align-items-center">
-                  <form method="post" action="{% url 'main:plus_product_amount' product.id %}">
-                      {% csrf_token %}
-                      <button class="tablebutton">+</button>
-                  </form>
-                  <form method="post" action="{% url 'main:minus_product_amount' product.id %}">
-                      {% csrf_token %}
-                      <button class="tablebutton">-</button>
-                  </form>
-                  <a href="{% url 'main:edit_product' product.pk %}">
-                    <button class="tablebutton">
-                        Edit
-                    </button>
-                  </a>
-                  <a href="{% url 'main:delete_product' product.pk %}">
-                    <button class="tablebutton">
-                        Delete
-                    </button>
-                  </a>
-                </td>
-              </tr>
-          {% endfor %}
-      </table>
-    </div>
+        <table id="product_table"></table>
+      </div>
 
     <br />
 
-    <a href="{% url 'main:create_product' %}">
-        <button class="add-product-button">
-            Add New Product
-        </button>
-    </a>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form id="form" onsubmit="return false;">
+                  {% csrf_token %}
+                  <div class="mb-3">
+                      <label for="name" class="col-form-label">Name:</label>
+                      <input type="text" class="form-control" id="name" name="name"></input>
+                  </div>
+                  <div class="mb-3">
+                    <label for="amount" class="col-form-label">Amount:</label>
+                    <input type="number" class="form-control" id="amount" name="amount"></input>
+                  </div>
+                  <div class="mb-3">
+                      <label for="price" class="col-form-label">Price:</label>
+                      <input type="number" class="form-control" id="price" name="price"></input>
+                  </div>
+                  <div class="mb-3">
+                      <label for="description" class="col-form-label">Description:</label>
+                      <textarea class="form-control" id="description" name="description"></textarea>
+                  </div>
+                  <div class="mb-4">
+                    <label for="image_url" class="col-form-label">Image Url:</label>
+                    <textarea class="form-control" id="image_url" name="image_url"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="tablebutton" id="button_add" data-bs-dismiss="modal">Add Product</button>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <button type="button" class="add-product-button" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Product</button>
+
   </div>
   <div class="login_session">
     <p>Last login session: {{ last_login }}</p>
   </div>
 </section>
+
+  <script>
+    async function getProducts() {
+      return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+    }
+
+    async function refreshProducts() {
+      const productTable = document.getElementById("product_table");
+      const products = await getProducts();
+      let htmlString = `
+      <table>
+        <tr>
+            <th class="top-left-th">Name</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date Added</th>
+            <th class="top-right-th">Options</th>
+        </tr>`;
+
+      products.forEach((item) => {
+        htmlString += `
+          <tr>
+            <td>${item.fields.name}</td>
+            <td>${item.fields.amount}</td>
+            <td>Rp.${new Intl.NumberFormat('id-ID').format(item.fields.price)}</td>
+            <td>${item.fields.description}</td>
+            <td>${item.fields.date_added}</td>
+            <td class="d-flex align-items-center">
+              <button onclick="increaseAmount(${item.pk})" class="tablebutton">+</button>
+              <button onclick="decreaseAmount(${item.pk})" class="tablebutton">-</button>
+              <a href="/edit-product/${item.pk}" class="tablebutton" style="text-decoration: none;">Edit</a>
+              <a href="/remove_product/${item.pk}" class="tablebutton" style="text-decoration: none;">Delete</a>
+            </td>
+          </tr>`;
+      });
+
+      htmlString += `</table>`;
+      productTable.innerHTML = htmlString;
+    }
+
+    refreshProducts();
+
+    async function refreshCard() {
+      const productCard = document.getElementById("product_card");
+      productCard.innerHTML = ""; 
+      const products = await getProducts();
+      let htmlString = "";
+
+      products.forEach((item) => {
+          htmlString += `
+              <div>
+                <div class="card" style="width: 18rem; border-radius: 20px; padding-left: 10px; padding-right: 10px; align-items: center;">
+                  <img class="card-img" src="${item.fields.image_url}" alt="Product Image">
+                  <h3 style="margin: 20px 0px; font-size: 24px; font-weight: 700;">${item.fields.name}</h3>
+                  <p>${item.fields.description}</p>
+                  <p>${item.fields.amount} items</p>
+                  <p>Rp.${new Intl.NumberFormat('id-ID').format(item.fields.price)}</p>
+                  <p>Date Added : ${item.fields.date_added}</p>
+                </div>
+              </div>`;
+        });
+        document.getElementById("product_card").innerHTML = htmlString;
+    }
+
+    refreshCard();
+
+    function addProduct() {
+      fetch("{% url 'main:add_product_ajax' %}", {
+          method: "POST",
+          body: new FormData(document.querySelector('#form'))
+      }).then(refreshProducts).then(refreshCard)
+
+      document.getElementById("form").reset()
+    }
+    
+    document.getElementById("button_add").onclick = addProduct
+    
+    function increaseAmount(productId) {
+      fetch(`/increase_amount/${productId}`, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+        },
+      })
+        .then(() => refreshProducts())
+        .catch((error) => console.error("Error:", error));
+    }
+
+    function decreaseAmount(productId) {
+      fetch(`/decrease_amount/${productId}`, {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": getCookie("csrftoken"),
+        },
+      })
+        .then(() => refreshProducts())
+        .catch((error) => console.error("Error:", error));
+    }
+
+    function getCookie(name) {
+      var cookieValue = null;
+      if (document.cookie && document.cookie !== "") {
+          var cookies = document.cookie.split(";");
+          for (var i = 0; i < cookies.length; i++) {
+              var cookie = cookies[i].trim();
+              if (cookie.substring(0, name.length + 1) === name + "=") {
+                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return cookieValue;
+    }
+
+  </script>
 
 {% endblock content %}
