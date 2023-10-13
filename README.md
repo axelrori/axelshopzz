@@ -507,6 +507,9 @@ Setelah menambahkan potongan kode untuk card, selanjutnya saya mengkustomisasi c
 
 
 # **TUGAS 6**
+
+DEPLOYMENT LINK : http://serafino-theodore-tugas.pbp.cs.ui.ac.id
+
 ## 1. Jelaskan perbedaan antara asynchronous programming dengan synchronous programming.
 Dalam synchronus programming, tindakan dilaksanakan secara berurutan, satu per satu, dan jika tindakan sebelumnya belum selesai, maka tindakan berikutnya ditunda. Ini menyederhanakan proses penulisan dan pemahaman program, tetapi terkadang dapat terasa lambat jika tindakan memerlukan waktu lama atau jika terjadi kesalahan. Sedangkan dalam asynchronus programming, tindakan dapat berjalan secara bersamaan tanpa penundaan, yang membuat program menjadi lebih cepat dan responsif. Namun, hal ini juga menjadikan penulisan dan pemahaman program lebih rumit karena alur eksekusinya tidak mengikuti urutan kode.
 
